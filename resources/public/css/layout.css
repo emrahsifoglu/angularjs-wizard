@@ -1,0 +1,84 @@
+body {
+    font-family: Helvetica, sans-serif;
+    background: url(../images/stripe.png) repeat;
+}
+
+html { height:100%; }
+
+body {  padding:0; margin:0; }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+legend {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.preview {
+    height:150px;
+    width: 150px;
+    border: 1px black solid;
+}
+
+fieldset {
+    margin-right: 10px;
+}
+
+.lastStep{
+    height:265px;
+    width:600px;
+    text-align:center;
+    border:1px solid silver;
+    display: table-cell;
+    vertical-align:middle;
+    font-weight: bold;
+    font-size: 38px;
+}
+
+#container {
+    width:640px;
+    height:480px;
+    position: absolute;
+    background-color: #e9f8ed;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius:  10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    overflow:hidden;
+    top: 50%;
+    left: 50%;
+    margin-top: -240px;
+    margin-left: -320px;
+}
+
+#content{
+    margin: 10px;
+    padding-left: 10px;
+    position: relative;
+}
+
+/* Styles go here */
+
+a.wizard-nav-button {
+    cursor: pointer;
+}
+
+a.wizard-nav-button{
+    cursor:hand;
+}
+
+a.wizard-nav-button.disabled {
+    color: #AAAAAA;
+    cursor: default;
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+    height: 100%;
+    width: 100%;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}

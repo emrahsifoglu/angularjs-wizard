@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="ngWizard">
+    <head lang="en">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link rel='stylesheet' type='text/css' media='all' href='resources/public/css/bootstrap-social.css' />
+        <link rel='stylesheet' type='text/css' media='all' href='resources/public/css/spectrum.css' />
+        <link rel='stylesheet' type='text/css' media='all' href='resources/public/css/layout.css' />
+        <link rel='stylesheet' type='text/css' media='all' href='resources/public/css/animate-li.css' />
+        <link rel='stylesheet' type='text/css' media='all' href='resources/public/css/animations-slide.css' />
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body ng-cloak>
+        <div id="container">
+            <div id="content">
+                <div ng-view class="slide-animation"></div>
+            </div>
+        </div>
+        <script type='text/javascript' src='http://code.jquery.com/jquery-2.1.1.min.js'></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-animate.min.js"></script>
+        <script type='text/javascript' src="resources/public/js/spectrum.js"></script>
+        <script type='text/javascript' src="resources/public/js/helper.js"></script>
+        <script type="text/javascript" src="app/lib/angular-easyfb.min.js"></script>
+        <script type="text/javascript" src="app/providers/routeProvider.js"></script>
+        <script type="text/javascript" src="app/providers/ezfbProvider.js"></script>
+        <script type="text/javascript" src="app/services/itunesService.js"></script>
+        <script type="text/javascript" src="app/directives/wizardDirective.js"></script>
+        <script type="text/javascript" src="app/directives/stepDirective.js"></script>
+        <script type="text/javascript" src="app/directives/colorPickerDirective.js"></script>
+        <script type="text/javascript" src="app/directives/aDisabledDirective.js"></script>
+        <script type="text/javascript" src="app/directives/formValidatonDirective.js"></script>
+        <script type="text/javascript" src="app/controllers/appController.js"></script>
+        <script type="text/javascript" src="app/angular_wizard.js"></script>
+    </body>
+</html>

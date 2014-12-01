@@ -1,0 +1,114 @@
+<script id="wizard.html" type="text/ng-template">
+    <div style="height: 480px;">
+        <div><span style="font-weight: bold; font-size: 28px;">{{header}}</span></div>
+        <div style="height: 70%" ng-transclude></div>
+        <div style="height: 30%; padding-right: 10px;">
+            <nav style="padding-left: 10px; padding-right: 10px;" class="navbar navbar-default">
+                <ul class="pager">
+                    <li style="cursor:pointer;" class="previous"><a class="wizard-nav-button" a-disabled="!isPrevNavButton" ng-click="showPreviousStep()" ng-show="hasPrevious()">&laquo; Previous</a></li>
+                    <li style="cursor:pointer;" class="next"><a class="wizard-nav-button" a-disabled="!isNextNavButton" ng-click="showNextStep()" ng-show="hasNext()">Next &raquo;</a></li>
+                    <li style="cursor:pointer;" class="next"><a class="wizard-nav-button" a-disabled="!isLastNavButton" ng-click="send()" ng-show="lastStep()">Send &raquo;</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</script>
+<script id="step.html" type="text/ng-template">
+    <div class="step" ng-show="currentStep">
+        <span style="font-weight: bold; font-size: 16px;">{{title}}</span>
+        <div ng-transclude></div>
+    </div>
+</script>
+<wizard on-before-step-change="stepChanged(event)" on-step-changing="stepChanged(event)" on-after-step-change="stepChanged(event)">
+    <step title="{{ settings.wizard.steps.step1.title }}">
+        <div class="form-horizontal">
+            <fieldset>
+                <legend>Personel data</legend>
+                <form novalidate form-drctv name="personal_data">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="name">Name</label>
+                        <div class="col-md-4">
+                            <input required id="name" type="text" name="text" ng-model="user.name" placeholder="Name" data-ng-minlength="6" data-ng-maxlength="50" class="form-control input-md">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="email">Email</label>
+                        <div class="col-md-4">
+                            <input required id="email" type="email" name="email" ng-model="user.email" placeholder="Email" class="form-control input-md">
+                        </div>
+                    </div>
+                </form>
+                <div class="form-group" align="right">
+                    <label class="col-md-4 control-label" for="login"></label>
+                    <div class="col-md-4">
+                        <button id="logout" name="login" class="btn btn-danger" ng-click="logout()" ng-show="loginStatus == 'connected'">Logout from Facebbok</button>
+                        <button id="login" name="login" class="btn btn-facebook" ng-click="login()" ng-hide="loginStatus == 'connected'">Login with Facebook</button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </step>
+    <step title="{{ settings.wizard.steps.step2.title  }}">
+       <div class="form-horizontal">
+            <fieldset>
+               <legend>Famous Album</legend>
+               <div style="height: 35px;">
+                   <form class="form-horizontal">
+                       <div class="input-append">
+                           <input style="float: left; width: 515px;" type="text" class="form-control" placeholder="Artist Name" ng-model="artistName">
+                           <button style="float:right; margin-right: 5px;" type="submit" class="btn" data-ng-disabled="(artistName.length < 3)" ng-click="submitArtist(artistName)">Search</button>
+                       </div>
+                   </form>
+               </div>
+               <div>
+                   <div style="margin: 5px; padding-left: 10px; font-weight: bold;" ng-show="loading">Loading</div>
+                   <div style="float: left;">
+                       <ul id="artists" class="animate-container">
+                           <li id="{{artist.id=((artists.indexOf(artist))+1)}}" class="animate-repeat" ng-click="setCollection(artist.id, artist.artistName, artist.collectionName)" ng-repeat="artist in artists | filter:artistName | orderBy:'artist.collectionName'">
+                               <span ng-class="{selected: selectedArtist.id == artist.id}">{{artist.collectionName}}</span>
+                           </li>
+                       </ul>
+                   </div>
+               </div>
+            </fieldset>
+        </div>
+    </step>
+    <step title="{{ settings.wizard.steps.step3.title }} ">
+        <div class="form-horizontal">
+            <fieldset>
+                <legend>Favorite Color</legend>
+                <div class="input-group">
+                    <ui-colorpicker ng-change="colorChange(targetColor)" ng-model="targetColor"></ui-colorpicker>
+                    <h1></h1>
+                    <input id="color" type="text" name="text" ng-change="colorChange(targetColor)" maxlength="7" placeholder="0000000" ng-model="targetColor" style="width: 90px; text-align: center;" class="form-control">
+                </div>
+                <h1></h1>
+                <div class="preview" ng-style="{ backgroundColor: targetColor }"></div>
+             </fieldset>
+        </div>
+    </step>
+    <step title="{{ settings.wizard.steps.step4.title }} ">
+        <div class="form-horizontal">
+            <fieldset>
+                <div>
+                    <legend>Message</legend>
+                    <form novalidate form-drctv name="message">
+                        <div class="form-group">
+                            <div style="margin: 0 auto; width: 630px;" class="col-md-4">
+                                <textarea required id="msg" data-ng-model="user.message" placeholder="Message" data-ng-minlength="5" data-ng-maxlength="100" class="form-control input-md"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+        </div>
+    </step>
+    <step title="{{ settings.wizard.steps.step5.title  }} ">
+        <div class="form-horizontal">
+            <fieldset>
+                <legend>Sending Your Form</legend>
+                <div class="lastStep">Thank You! {{user.name}}</div>
+            </fieldset>
+        </div>
+    </step>
+</wizard>
